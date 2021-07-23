@@ -1,0 +1,3 @@
+#route                      backend
+/api/auth/                   be_authapi
+/api/security/              be_securityapi

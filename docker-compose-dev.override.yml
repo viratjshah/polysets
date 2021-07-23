@@ -1,0 +1,60 @@
+version: '3.4'
+
+services:
+  haproxy:
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /mnt/d/git/p1app/scripts/docker/haproxy/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - /mnt/d/git/p1app/scripts/docker/haproxy/config/routes.map:/usr/local/etc/haproxy/maps/routes.map:ro
+      - /mnt/d/git/p1app/scripts/docker/haproxy/pem/p1app.pem:/etc/haproxy/pem/p1app.pem
+
+  registry-ui:
+    ports:
+      - 9002:80
+    environment:
+      - REGISTRY_URL=http://localhost:5000
+      - DELETE_IMAGES=true
+  
+  verdaccio:
+    environment:
+      - VERDACCIO_PORT=4873
+    ports:
+      - "9006:4873"
+    volumes:
+      - "/mnt/data/verdaccio:/verdaccio/storage"
+      - "./scripts/docker/verdaccio/config:/verdaccio/conf"
+      - "./scripts/docker/verdaccio/plugins:/verdaccio/plugins"  
+      
+  mongodb:
+    ports:
+      - 9004:27017
+    volumes:
+      - /mnt/data/mongodb:/data/db
+  
+  p1web:
+    environment:
+      NODE_ENV: development
+    ports:
+      - 9200:3000
+      - 9201:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]
+
+  authapi:
+    environment:
+      NODE_ENV: development
+    ports:
+      - 9100:3000
+      - 9101:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]
+  
+  securityapi:
+    environment:
+      NODE_ENV: development
+    ports:
+      - 9102:3000
+      - 9103:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]
+  
+  

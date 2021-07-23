@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+  haproxy:
+    image: haproxy
+    container_name: haproxy
+    restart: always
+  
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    container_name: registry-ui
+    restart: always
+  
+  verdaccio:
+    image: verdaccio/verdaccio
+    container_name: "verdaccio"
+    restart: always
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+
+  p1web:
+    image: localhost:5000/p1web:latest
+    container_name: "p1web"
+    build:
+      context: .
+      dockerfile: src/p1-web/Dockerfile
+  
+  authapi:
+    image: localhost:5000/authapi:latest
+    container_name: "authapi"
+    build:
+      context: .
+      dockerfile: src/auth-api/Dockerfile
+  
+  securityapi:
+    image: localhost:5000/securityapi:latest
+    container_name: "securityapi"
+    build:
+      context: .
+      dockerfile: src/security-api/Dockerfile

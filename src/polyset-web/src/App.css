@@ -1,0 +1,515 @@
+.App {
+  width: 100%;
+}
+
+input {
+  width: 70%;
+}
+
+.input100 {
+  width: 100%;
+}
+.p0 {
+  padding: 0px !important;
+}
+.m0 {
+  margin: 0px !important;
+}
+button {
+  width: 70%;
+}
+.textcenter {
+  text-align: center;
+}
+.textleft {
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.logintopbtn {
+  margin-top: -18px;
+}
+.authpght {
+  min-height: 420px;
+}
+.cyfpght {
+  min-height: 470px;
+}
+.card
+{
+  padding-bottom: 3px;
+}
+
+.gridheader
+{
+  background-color: #e6e6e6;
+  border:1px solid #c0c0c0;
+}
+
+input[type='text'] {
+  width: 100%;
+}
+input[type='password'] {
+  width: 100%;
+}
+input[type='password'] {
+  width: 100%;
+}
+.textgray
+{
+  color: #9c9c9c;
+}
+.loginchk {
+  padding-left: 10px;
+}
+.loginfgtpwd {
+  padding: 0px 0px 10px 10px;
+}
+button {
+  width: 96%;
+  margin: 5px 10px !important;
+}
+.cfund-main {
+  width: 43%;
+  margin: 0px auto;
+}
+
+.cfund-main h2{
+  font-weight: bolder;
+}
+
+.cfund-main .p-grid
+{
+  margin: 0px 0px 10px 0px;
+}
+.cfund-main p {
+  margin: 20px 0px;
+}
+
+#createfp ul {
+  margin: 0px;
+  padding: 0px;
+}
+#createfp ul li {
+  list-style-type: none;
+  display: inline;
+}
+
+.cfund-inputtext1 {
+  margin-left: -15px;
+  width: 105% !important;
+}
+
+/* fund radio btn */
+
+.donate-now {
+  list-style-type: none;
+  margin: 25px 0 0 0;
+  padding: 0;
+}
+
+.donate-now li {
+  float: left;
+  width: 178px;
+  height: 40px;
+  position: relative;
+}
+
+.mr13
+{
+  margin-right: 13px;
+}
+
+.donate-now label,
+.donate-now input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.donate-now input[type="radio"] {
+  opacity: 0.01;
+  z-index: 100;
+}
+
+.donate-now input[type="radio"]:checked+label,
+.Checked+label {
+  background: yellow;
+}
+
+.donate-now label {
+  padding: 5px;
+  border: 1px solid #CCC;
+  cursor: pointer;
+  z-index: 90;
+}
+
+.donate-now label:hover {
+  background: #DDD;
+}
+label.p-button
+{
+  margin-left: 0rem !important;
+  line-height: 24px !important;
+}
+/* fund radio btn */
+
+#btnlogin {
+  width: 30%;
+  position: absolute;
+  right: 5px;
+  top: -26px;
+}
+#btnsignup {
+  width: 30%;
+  position: absolute;
+  right: 33%;
+  top: -26px;
+}
+
+.btnback {
+  color: #000000;
+  background: #ffffff;
+  border: 1px solid #181818;
+  padding: 0.5rem 4rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  border-radius: 3px;
+  text-decoration: none;
+  margin: 5px;
+}
+
+#btncont {
+  color: #ffffff;
+  background: #9b7fbc !important;
+  border: 1px solid #9b7fbc !important;
+  width: 48%;
+  margin: 5px 0px !important;
+}
+
+#btnback
+{
+  width: 48%;
+}
+
+.btncont:hover {
+  color: #000000;
+  background: #9c27b0;
+  border: 1px solid #9c27b0;
+}
+
+.cfptextbox {
+  padding: 20px 15px !important;
+}
+
+.country-item img {
+  width: 20px;
+}
+.country-item span {
+  padding-left: 10px;
+}
+.p-listbox-list-wrapper {
+  max-height: 83px !important;
+}
+.tbtnsm {
+  width: 70%;
+  max-height: 0px;
+  padding: 10px 5px !important;
+}
+footer {
+  width: 100%;
+  float: left;
+  margin: 10px 0px;
+  padding: 10px 0px;
+  border-top: 1px solid rgba(187, 187, 187, 1);
+  position: relative;
+  bottom: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .steps-demo .p-steps {
+    height: 350px;
+  }
+  .steps-demo .p-steps > ul {
+    flex-direction: column;
+    height: 100%;
+  }
+  .steps-demo .p-steps > ul .p-steps-item {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .steps-demo .p-steps > ul .p-steps-item:before {
+    position: static;
+    left: auto;
+    top: auto;
+    margin-top: 0;
+    border-left: 1px solid var(--surface-d);
+    border-top: 0 none;
+    width: auto;
+    height: 100%;
+    margin-left: 1rem;
+  }
+  .steps-demo .p-steps > ul .p-steps-item .p-menuitem-link {
+    flex-direction: row;
+    overflow: visible;
+  }
+  .steps-demo .p-steps > ul .p-steps-item .p-menuitem-link .p-steps-title {
+    margin: 0 0.5rem 0;
+  }
+  .steps-demo .p-steps > ul .p-steps-item:last-child {
+    flex-grow: 0;
+  }
+  .steps-demo .p-steps > ul .p-steps-item:last-child .p-menuitem-link {
+    padding: 0;
+  }
+  .steps-demo .p-steps > ul .p-steps-item:last-child:before {
+    display: none;
+  }
+
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+.logintopbtn {
+  width: 100%;
+  float: left;
+}
+.p-menubar-end {
+  width: 25%;
+  position: absolute !important;
+  right: 0px !important;
+  float: right !important;
+}
+
+/* media query */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  #btnlogin {
+    width: 100%;
+  }
+  #btnsignup {
+    width: 100%;
+    right: 115%;
+  }
+  .cfund-main
+  {
+    width: 95%;
+  }
+  .p-col-3 {
+    width: 100%;
+  }
+  .p-col-6 {
+    width: 100%;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+   .p-col-3 {
+    width: 100%;
+  }
+  .p-col-6 {
+    width: 100%;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  #btnlogin {
+    width: 100%;
+  }
+  #btnsignup {
+    width: 100%;
+    right: 115%;
+  }
+  .cfund-main
+  {
+    width: 95%;
+  }
+  .p-col-3 {
+    width: 100%;
+  }
+  .p-col-6 {
+    width: 100%;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #btnlogin {
+    width: 100%;
+  }
+  #btnsignup {
+    width: 100%;
+    right: 115%;
+  }
+  .p-col-3 {
+    width: 100%;
+  }
+  .p-col-6 {
+    width: 100%;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+}
+/**********
+  iPad 3
+  **********/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  /* Styles */
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
+  /* Styles */
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
+  /* Styles */
+}
+
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* Samsung Galaxy S4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
+  .logintopbtn {
+    width: 100%;
+    float: left;
+  }
+}
+
+/* media query */
