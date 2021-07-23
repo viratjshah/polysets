@@ -1,4 +1,4 @@
-var dataAccess = require('@p1app/dataaccess');
+var dataAccess = require('@pridevel/dataaccess');
 var User = dataAccess.User;
 var Token = dataAccess.Token;
 const jwt = require('jsonwebtoken');

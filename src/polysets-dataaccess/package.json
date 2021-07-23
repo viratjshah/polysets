@@ -1,0 +1,18 @@
+{
+  "name": "@pridevel/dataaccess",
+  "version": "1.0.0",
+  "description": "Data Access Component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pridevel",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "moongoose": "0.0.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "structured-log": "^0.2.0"
+  }
+}

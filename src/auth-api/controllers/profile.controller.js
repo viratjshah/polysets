@@ -1,4 +1,4 @@
-var dataAccess = require('@p1app/dataaccess');
+var dataAccess = require('@pridevel/dataaccess');
 var Profile = dataAccess.Profile;
  
 class ProfileController {

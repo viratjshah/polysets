@@ -6,9 +6,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /mnt/d/git/p1app/scripts/docker/haproxy/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-      - /mnt/d/git/p1app/scripts/docker/haproxy/config/routes.map:/usr/local/etc/haproxy/maps/routes.map:ro
-      - /mnt/d/git/p1app/scripts/docker/haproxy/pem/p1app.pem:/etc/haproxy/pem/p1app.pem
+      - /mnt/e/Pridevel/reactjs/PolySets/scripts/docker/haproxy/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - /mnt/e/Pridevel/reactjs/PolySets/scripts/docker/haproxy/config/routes.map:/usr/local/etc/haproxy/maps/routes.map:ro
+      - /mnt/e/Pridevel/reactjs/PolySets/scripts/docker/haproxy/pem/p1app.pem:/etc/haproxy/pem/p1app.pem
 
   registry-ui:
     ports:
@@ -33,7 +33,7 @@ services:
     volumes:
       - /mnt/data/mongodb:/data/db
   
-  p1web:
+  polysetsweb:
     environment:
       NODE_ENV: development
     ports:

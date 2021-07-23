@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //p1app dataaccess
-var dataAccess = require('@p1app/dataaccess')
+var dataAccess = require('@pridevel/dataaccess')
 var mongoose = dataAccess.Mongoose;
 var db = dataAccess.db;
 var PassportManager = dataAccess.PassportManager;
