@@ -20,6 +20,13 @@ services:
     image: mongo:latest
     container_name: mongodb
 
+  p1web:
+    image: localhost:5000/p1web:latest
+    container_name: "p1web"
+    build:
+      context: .
+      dockerfile: src/p1-web/Dockerfile
+
   polysetsweb:
     image: localhost:5000/polysetsweb:latest
     container_name: "polysetsweb"

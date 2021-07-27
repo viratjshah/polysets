@@ -32,6 +32,14 @@ services:
       - 9004:27017
     volumes:
       - /mnt/data/mongodb:/data/db
+
+  p1web:
+    environment:
+      NODE_ENV: development
+    ports:
+      - 9200:3000
+      - 9201:9229
+    command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]
   
   polysetsweb:
     environment:

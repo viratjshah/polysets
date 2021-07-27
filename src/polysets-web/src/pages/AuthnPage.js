@@ -1,6 +1,6 @@
 import React from 'react';
 import Landing from '../components/Landing';
-import AuthnForm from '../react-components/AuthnForm';
+import AuthnForm from '@pridevel/authnform';
 import {Constants} from '../utils/Constants';
 
 const AuthnPage = (props) => {
