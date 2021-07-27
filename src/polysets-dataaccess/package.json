@@ -1,12 +1,12 @@
 {
-  "name": "@pridevel/dataaccess",
+  "name": "@p1app/dataaccess",
   "version": "1.0.0",
   "description": "Data Access Component",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "pridevel",
+  "author": "p1app",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^10.0.0",

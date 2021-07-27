@@ -19,20 +19,38 @@ services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
+  
+  geth:
+    image: localhost:5000/geth
+    container_name: geth
+    build:
+      context: .
+      dockerfile: scripts/docker/geth/Dockerfile
+  
+  p1solc:
+    image: localhost:5000/p1solc:latest
+    container_name: p1solc
+    build:
+      context: .
+      dockerfile: src/p1-solc/Dockerfile
+  
+  netstatsapi: 
+    container_name: netstatsapi
+    image: enettet/ethereum-netstats-api
 
-  p1web:
-    image: localhost:5000/p1web:latest
-    container_name: "p1web"
+  ganache:
+    image: localhost:5000/ganache:latest
+    container_name: ganache
+    build:
+      context: .
+      dockerfile: scripts/docker/ganache/Dockerfile
+    
+  p1webapp:
+    image: localhost:5000/p1webapp:latest
+    container_name: "p1webapp"
     build:
       context: .
       dockerfile: src/p1-web/Dockerfile
-
-  polysetsweb:
-    image: localhost:5000/polysetsweb:latest
-    container_name: "polysetsweb"
-    build:
-      context: .
-      dockerfile: src/polysets-web/Dockerfile
   
   authapi:
     image: localhost:5000/authapi:latest
@@ -47,3 +65,10 @@ services:
     build:
       context: .
       dockerfile: src/security-api/Dockerfile
+
+  p1dapp:
+    image: localhost:5000/p1dapp:latest
+    container_name: p1dapp
+    build:
+      context: .
+      dockerfile: src/p1-dapp/Dockerfile
