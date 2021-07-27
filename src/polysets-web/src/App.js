@@ -19,7 +19,7 @@ import CreateFPFees from './pages/CreateFPFees';
 import AddTokens from './pages/AddTokens';
 import Customize from './pages/Customize';
 import CreateSetPages from './pages/CreateSetPage';
-
+import PasswordReset from './pages/PasswordReset';
 
 class App extends React.Component {
   constructor(props) {
@@ -105,10 +105,7 @@ class App extends React.Component {
                 {' '}
                 <AuthnPage mode='resetpwd' />{' '}
               </Route>
-              <Route exact path='/reset:token?'>
-                {' '}
-                <AuthnPage mode='token' />{' '}
-              </Route>
+              <Route exact path='/reset' component={PasswordReset} />              
               <Route exact path='/' component={CreateFunds} />
               <Route exact path='/feature' component={Feature} />
               <Route exact path='/pricing' component={Pricing} />

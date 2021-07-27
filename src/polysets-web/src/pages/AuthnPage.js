@@ -1,12 +1,9 @@
 import React from 'react';
 import Landing from '../components/Landing';
-import AuthnForm from '@pridevel/authnform';
+import {AuthnForm} from '../react-components/AuthnForm';
 import {Constants} from '../utils/Constants';
 
 const AuthnPage = (props) => {
-  
-  //  const {computedMatch:{params}}=props;
-  //  const token = decodeURIComponent(params.token);
   
   return (
     <section className='p-grid p-m-0'>
