@@ -8,6 +8,7 @@ import { InputText } from 'primereact/inputtext';
 import {Steps} from 'primereact/steps';
 import { ListBox } from 'primereact/listbox';
 import { Editor } from 'primereact/editor';
+import { FileUpload } from 'primereact/fileupload';
 
 const Customize = (props) => {
     return (
@@ -28,6 +29,7 @@ const Customize = (props) => {
             </div>
             <div className="p-mt-3">
                 <h5>Fund Logo</h5>
+                <FileUpload name="demo[]" url="./upload" multiple />
                 <h5>Description</h5>
                 <Editor style={{height:'320px'}}  />
             </div>

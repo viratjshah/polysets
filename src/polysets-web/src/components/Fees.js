@@ -68,11 +68,8 @@ const Fees = (props) => {
         <h6>Rebalance Fee</h6>
         <p>
           Rebalance Fee is the fee you will charge your investor when you
-          rebalance your.
-          <br />
-          fund. This fee is a % total value of fund accured every time the
-          postfolio is <br />
-          rebalanced. The accures fees can be claimed periodically.
+          rebalance your.fund. This fee is a % total value of fund accured every time the
+          postfolio is rebalanced. The accures fees can be claimed periodically.
         </p>
         <p>
           <InputNumber
@@ -96,12 +93,8 @@ const Fees = (props) => {
         </p>
         <h6>Management Fee</h6>
         <p>
-          Rebalance Fee is the fee you will charge your investor when you
-          rebalance your.
-          <br />
-          fund. This fee is a % total value of fund accured every time the
-          postfolio is <br />
-          rebalanced. The accures fees can be claimed periodically.
+          Management Fee is the fee you will charge your investor for Management.
+          This fee is a % value of fund change annually.This fee is accured daily and can be issued(claimed) periodically.
         </p>
         <p>
           <InputNumber
