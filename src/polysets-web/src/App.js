@@ -24,10 +24,12 @@ import PasswordReset from './pages/PasswordReset';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userlogin:false,
+    };
   }
   render() {
-    const items = [
+    const logoutItems = [
       {
         label: 'Home',
         className: 'p-menuitem-active',
@@ -61,31 +63,57 @@ class App extends React.Component {
       },
       
     ];
+
+    const loginItems = [
+      {
+        label: 'Home',
+        className: 'p-menuitem-active',
+        command: () => {
+          window.location = '/';
+        },
+      },
+            
+    ];
+
     return (
       <Router>
         <div className='App'>
           <header className='p-grid p-m-0'>
             <div className='p-field p-col-12 p-md-12'>
               <Menubar
-                model={items}
+                model={this.state.userlogin?loginItems:logoutItems}
                 end={
                   <div>
-                    <Button
-                      label='Login'
-                      onClick={() => {
-                        window.location = '/login';
-                      }}
-                      className='p-button-info p-col-3 '
-                      id='btnlogin'
-                    />
-                    <Button
-                      label='Sign-up'
-                      onClick={() => {
-                        window.location = '/signup';
-                      }}
-                      className='p-button-info p-ml-2 p-col-3'
-                      id='btnsignup'
-                    />
+                    {!this.state.userlogin && 
+                    <div>
+                      <Button
+                        label='Login'
+                        onClick={() => {
+                          window.location = '/login';
+                        }}
+                        className='p-button-info p-col-3 '
+                        id='btnlogin'
+                      />
+                      <Button
+                        label='Sign-up'
+                        onClick={() => {
+                          window.location = '/signup';
+                        }}
+                        className='p-button-info p-ml-2 p-col-3'
+                        id='btnsignup' 
+                      />
+                    </div>
+                    }
+                    {this.state.userlogin && 
+                      <Button
+                        label='Logout'
+                        onClick={() => {
+                          window.location = '/login';
+                        }}
+                        className='p-button-info p-ml-2 p-col-11'
+                        id='btnlogout'
+                      />
+                    }
                   </div>
                 }
               />

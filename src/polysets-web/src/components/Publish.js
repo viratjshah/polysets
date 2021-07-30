@@ -28,8 +28,9 @@ const Publish = (props) => {
             </div>
           </section>
           <Button
-          label='Create Set'
+          label='Edit Set'
           className='p-button p-component p-button-outlined p-button-secondary p-col-12 p-mt-2 p-ml-1'
+          onClick={()=> props.onChange({activeIndex:0})}
         />
         <h3 className="p-mt-5">Publish your Set</h3>
         <article className="p-mt-3">

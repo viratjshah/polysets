@@ -294,10 +294,15 @@ footer {
   float: left;
 }
 .p-menubar-end {
-  width: 25%;
+  width: 20%;
   position: absolute !important;
-  right: 0px !important;
+  right: 11px !important;
   float: right !important;
+}
+
+#btnlogout
+{
+  width: 35%;
 }
 
 /* media query */
