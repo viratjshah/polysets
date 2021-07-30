@@ -24,7 +24,7 @@ button {
 .textleft {
   text-align: left;
 }
-.text-right{
+.text-right {
   text-align: right;
 }
 .logintopbtn {
@@ -36,15 +36,13 @@ button {
 .cyfpght {
   min-height: 470px;
 }
-.card
-{
+.card {
   padding-bottom: 3px;
 }
 
-.gridheader
-{
+.gridheader {
   background-color: #e6e6e6;
-  border:1px solid #c0c0c0;
+  border: 1px solid #c0c0c0;
 }
 
 input[type='text'] {
@@ -56,8 +54,7 @@ input[type='password'] {
 input[type='password'] {
   width: 100%;
 }
-.textgray
-{
+.textgray {
   color: #9c9c9c;
 }
 .loginchk {
@@ -75,12 +72,11 @@ button {
   margin: 0px auto;
 }
 
-.cfund-main h2{
+.cfund-main h2 {
   font-weight: bolder;
 }
 
-.cfund-main .p-grid
-{
+.cfund-main .p-grid {
   margin: 0px 0px 10px 0px;
 }
 .cfund-main p {
@@ -116,8 +112,7 @@ button {
   position: relative;
 }
 
-.mr13
-{
+.mr13 {
   margin-right: 13px;
 }
 
@@ -131,28 +126,27 @@ button {
   bottom: 0;
 }
 
-.donate-now input[type="radio"] {
+.donate-now input[type='radio'] {
   opacity: 0.01;
   z-index: 100;
 }
 
-.donate-now input[type="radio"]:checked+label,
-.Checked+label {
+.donate-now input[type='radio']:checked + label,
+.Checked + label {
   background: yellow;
 }
 
 .donate-now label {
   padding: 5px;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   cursor: pointer;
   z-index: 90;
 }
 
 .donate-now label:hover {
-  background: #DDD;
+  background: #ddd;
 }
-label.p-button
-{
+label.p-button {
   margin-left: 0rem !important;
   line-height: 24px !important;
 }
@@ -176,6 +170,11 @@ label.p-button
   margin: 100px auto 130px auto;
 }
 #pwdreset h4{
+#pwdreset {
+  width: 30%;
+  margin: 100px auto 130px auto;
+}
+#pwdreset h4 {
   width: 100%;
   text-align: center;
   font-size: 20px;
@@ -203,8 +202,7 @@ label.p-button
   margin: 5px 0px !important;
 }
 
-#btnback
-{
+#btnback {
   width: 48%;
 }
 
@@ -302,6 +300,7 @@ footer {
 
 #btnlogout
 {
+#btnlogout {
   width: 35%;
 }
 
@@ -316,8 +315,7 @@ footer {
     width: 100%;
     right: 115%;
   }
-  .cfund-main
-  {
+  .cfund-main {
     width: 95%;
   }
   .p-col-3 {
@@ -330,7 +328,7 @@ footer {
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
-   .p-col-3 {
+  .p-col-3 {
     width: 100%;
   }
   .p-col-6 {
@@ -347,8 +345,7 @@ footer {
     width: 100%;
     right: 115%;
   }
-  .cfund-main
-  {
+  .cfund-main {
     width: 95%;
   }
   .p-col-3 {

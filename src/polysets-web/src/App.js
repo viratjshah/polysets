@@ -120,6 +120,27 @@ class App extends React.Component {
                     </div>
                     }
                     {this.state.userlogin && 
+                    {!this.state.currentUser && 
+                    <div>
+                    <Button
+                      label='Login'
+                      onClick={() => {
+                        window.location = '/login';
+                      }}
+                      className='p-button-info p-col-3 '
+                      id='btnlogin'
+                    />
+                    <Button
+                      label='Sign-up'
+                      onClick={() => {
+                        window.location = '/signup';
+                      }}
+                      className='p-button-info p-ml-2 p-col-3'
+                      id='btnsignup'
+                    />
+                    </div>
+                  }
+                    {this.state.currentUser && 
                       <Button
                         label='Logout'
                         onClick={() => {

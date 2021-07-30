@@ -10,17 +10,10 @@ const Fees = (props) => {
     <div>
       <h2 className='p-mt-5'>Add Fees Details</h2>
       <div className='p-field p-col-10 p-md-10'>
-        <p>
-          Basic details such as name and symbol are written to the blockchain
-          and cannot be update later. Once created, you can customize your Set's
-          description, the manager description, and provide image icons.
-        </p>
         <h6>Entry Fee</h6>
         <p>
-          Entry Fee is the fee you will charge your investor when they invest in
-          your fund.
-          <br />
-          This fee is a % of amount invested
+          Entry Fee is the fee you will charge your investor when they invest in your fund.
+          <br /> This fee is a % of amount invested
         </p>
         <p>
           <InputNumber
@@ -42,10 +35,8 @@ const Fees = (props) => {
         </p>
         <h6>Exit Fee</h6>
         <p>
-          Exit Fee is the fee you will charge your investor when they sell your
-          fund.
-          <br />
-          This fee is a % of amount invested
+          Exit Fee is the fee you will charge your investor when they sell your fund.
+          <br /> This fee is a % of amount invested
         </p>
         <p>
           <InputNumber
@@ -118,9 +109,8 @@ const Fees = (props) => {
         </p>
         <h6>Mining Fee</h6>
         <p>
-          This fee charge to the investor when new Fund tokens are issued
-          <br />
-          This is the acutal mining fee and is passed on to the investor
+          This fee charged to the investor when new Fund tokens are issued.
+          <br/> This is the acutal mining fee and is passed on to the investor.
         </p>
         <p>
           <ToggleButton

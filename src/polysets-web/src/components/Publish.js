@@ -28,7 +28,7 @@ const Publish = (props) => {
             </div>
           </section>
           <Button
-          label='Edit Set'
+          label='Create Set'
           className='p-button p-component p-button-outlined p-button-secondary p-col-12 p-mt-2 p-ml-1'
           onClick={()=> props.onChange({activeIndex:0})}
         />

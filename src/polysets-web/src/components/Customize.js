@@ -19,6 +19,8 @@ const Customize = (props) => {
                 <h5>Fund Creator</h5>
                 <InputText value={props.state.customizeFundCreator} onChange={(e) => props.onChange({customizeFundCreator: e.target.value})} />
                 
+=======
+>>>>>>> Stashed changes
             </div>
             <div className="p-mt-3">
                 <h5>Fund Logo</h5>
