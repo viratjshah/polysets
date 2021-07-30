@@ -96,7 +96,8 @@ class InitSteps extends React.Component {
 
         {this.componentPages[this.state.activeIndex]}
         
-        
+        { 
+          this.state.activeIndex!==4 &&  
         <div className='p-field p-col-12 p-md-12 p0 m0'>
           <Button
             label='Back'
@@ -125,6 +126,9 @@ class InitSteps extends React.Component {
             id='btncont'
           />
         </div>
+        }
+
+
       </div>
     );
   }

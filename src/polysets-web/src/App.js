@@ -15,7 +15,7 @@ import Faqs from './pages/Faqs';
 import AuthnPage from './pages/AuthnPage';
 import CreateFunds from './pages/CreateFunds';
 import CreateSetPages from './pages/CreateSetPage';
-
+import PasswordReset from './pages/PasswordReset';
 
 class App extends React.Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class App extends React.Component {
   logOut = () => localStorage.removeItem('user')
 
   render() {
-    const items = [
+    const logoutItems = [
       {
         label: 'Home',
         className: 'p-menuitem-active',
@@ -79,30 +79,56 @@ class App extends React.Component {
       },
       
     ];
+
+    const loginItems = [
+      {
+        label: 'Home',
+        className: 'p-menuitem-active',
+        command: () => {
+          window.location = '/';
+        },
+      },
+            
+    ];
+
     return (
         <div className='App'>
           <header className='p-grid p-m-0'>
             <div className='p-field p-col-12 p-md-12'>
               <Menubar
-                model={items}
+                model={this.state.userlogin?loginItems:logoutItems}
                 end={
                   <div>
-                    <Button
-                      label='Login'
-                      onClick={() => {
-                        window.location = '/login';
-                      }}
-                      className='p-button-info p-col-3 '
-                      id='btnlogin'
-                    />
-                    <Button
-                      label='Sign-up'
-                      onClick={() => {
-                        window.location = '/signup';
-                      }}
-                      className='p-button-info p-ml-2 p-col-3'
-                      id='btnsignup'
-                    />
+                    {!this.state.userlogin && 
+                    <div>
+                      <Button
+                        label='Login'
+                        onClick={() => {
+                          window.location = '/login';
+                        }}
+                        className='p-button-info p-col-3 '
+                        id='btnlogin'
+                      />
+                      <Button
+                        label='Sign-up'
+                        onClick={() => {
+                          window.location = '/signup';
+                        }}
+                        className='p-button-info p-ml-2 p-col-3'
+                        id='btnsignup' 
+                      />
+                    </div>
+                    }
+                    {this.state.userlogin && 
+                      <Button
+                        label='Logout'
+                        onClick={() => {
+                          window.location = '/login';
+                        }}
+                        className='p-button-info p-ml-2 p-col-11'
+                        id='btnlogout'
+                      />
+                    }
                   </div>
                 }
               />
@@ -117,8 +143,10 @@ class App extends React.Component {
                 <AuthnPage mode='signup' />
               </Route>
               <Route exact path='/resetpwd'>
-                <AuthnPage mode='resetpwd' />
+                {' '}
+                <AuthnPage mode='resetpwd' />{' '}
               </Route>
+              <Route exact path='/reset' component={PasswordReset} />              
               <Route exact path='/' component={CreateFunds} />
               <Route exact path='/feature' component={Feature} />
               <Route exact path='/pricing' component={Pricing} />

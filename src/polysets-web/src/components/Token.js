@@ -8,9 +8,11 @@ import { InputText } from 'primereact/inputtext';
 import {Steps} from 'primereact/steps';
 import { Toast } from 'primereact/toast';
 import { ListBox } from 'primereact/listbox';
+import { AutoComplete } from 'primereact/autocomplete';
 
 const Token = (props) => {
 
+    
     const tokens = [
         { name: 'BTC ETH 75 25 Weight', code: 'AU' },
         { name: 'BTC ETH Equal Weight', code: 'BR' },
@@ -21,6 +23,14 @@ const Token = (props) => {
         { name: 'BTC ETH 75 25 Weight', code: 'IN' },
         { name: 'BTC ETH 75 25 Weight', code: 'JP' }
     ];
+
+    const countries = tokens; // datasource
+
+    //const searchCountry = (event) => {
+     //   let filteredCountries = //suggestions
+        //setFilteredCountries(filteredCountries);
+    //}
+
 
     function countryTemplate(option) {
         return (
@@ -42,8 +52,9 @@ const Token = (props) => {
             Before proceeding, please review our Set Creation Guide as on all ERC20 token are compatible with the Set Protocol. Incorrectly configuring Set with illiquid or obscure tokens can result in locked funds and lost of network fees.
           </div>
           <div>
-              <ListBox value={props.state.selectedCountries} options={tokens} onChange={(e) => props.onChange({ selectedCountries: e.value })} multiple filter optionLabel="name"
-                  itemTemplate={countryTemplate} style={{  }} listStyle={{ maxHeight: '250px' }} />
+             {/* <ListBox value={props.state.selectedCountries} options={tokens} onChange={(e) => props.onChange({ selectedCountries: e.value })} multiple filter optionLabel="name"
+                  itemTemplate={countryTemplate} style={{  }} listStyle={{ maxHeight: '250px' }} /> */}
+                  <AutoComplete className="p-col-12" />
           </div>
           <section className="p-mt-4">
             <div className="p-grid gridheader">

@@ -171,6 +171,17 @@ label.p-button
   top: -26px;
 }
 
+#pwdreset{
+  width: 30%;
+  margin: 100px auto 130px auto;
+}
+#pwdreset h4{
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px 0px 10px 0px;
+}
+
 .btnback {
   color: #000000;
   background: #ffffff;
@@ -283,10 +294,15 @@ footer {
   float: left;
 }
 .p-menubar-end {
-  width: 25%;
+  width: 20%;
   position: absolute !important;
-  right: 0px !important;
+  right: 11px !important;
   float: right !important;
+}
+
+#btnlogout
+{
+  width: 35%;
 }
 
 /* media query */
