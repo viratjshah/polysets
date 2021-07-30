@@ -20,6 +20,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "pug": "^3.0.2",
+    "sib-api-v3-sdk": "^8.2.1",
     "structured-log": "^0.2.0"
   },
   "devDependencies": {

@@ -5,36 +5,36 @@ services:
     image: haproxy
     container_name: haproxy
     restart: always
-  
+
   registry-ui:
     image: joxit/docker-registry-ui:latest
     container_name: registry-ui
     restart: always
-  
+
   verdaccio:
     image: verdaccio/verdaccio
-    container_name: "verdaccio"
+    container_name: 'verdaccio'
     restart: always
 
   mongodb:
     image: mongo:latest
     container_name: mongodb
-  
+
   geth:
     image: localhost:5000/geth
     container_name: geth
     build:
       context: .
       dockerfile: scripts/docker/geth/Dockerfile
-  
+
   p1solc:
     image: localhost:5000/p1solc:latest
     container_name: p1solc
     build:
       context: .
       dockerfile: src/p1-solc/Dockerfile
-  
-  netstatsapi: 
+
+  netstatsapi:
     container_name: netstatsapi
     image: enettet/ethereum-netstats-api
 
@@ -44,24 +44,24 @@ services:
     build:
       context: .
       dockerfile: scripts/docker/ganache/Dockerfile
-    
-  p1webapp:
-    image: localhost:5000/p1webapp:latest
-    container_name: "p1webapp"
+
+  webapp:
+    image: localhost:5000/webapp:latest
+    container_name: 'webapp'
     build:
       context: .
-      dockerfile: src/p1-web/Dockerfile
-  
+      dockerfile: src/polysets-web/Dockerfile
+
   authapi:
     image: localhost:5000/authapi:latest
-    container_name: "authapi"
+    container_name: 'authapi'
     build:
       context: .
       dockerfile: src/auth-api/Dockerfile
-  
+
   securityapi:
     image: localhost:5000/securityapi:latest
-    container_name: "securityapi"
+    container_name: 'securityapi'
     build:
       context: .
       dockerfile: src/security-api/Dockerfile

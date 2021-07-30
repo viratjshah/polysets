@@ -3,12 +3,12 @@ version: '3.4'
 services:
   haproxy:
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
-      - /mnt/e/Pridevel/reactjs/PolySets/scripts/docker/haproxy/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-      - /mnt/e/Pridevel/reactjs/PolySets/scripts/docker/haproxy/config/routes.map:/usr/local/etc/haproxy/maps/routes.map:ro
-      - /mnt/e/Pridevel/reactjs/PolySets/scripts/docker/haproxy/pem/p1app.pem:/etc/haproxy/pem/p1app.pem
+      - ./scripts/docker/haproxy/config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./scripts/docker/haproxy/config/routes.map:/usr/local/etc/haproxy/maps/routes.map:ro
+      - ./scripts/docker/haproxy/pem/polysets.pem:/etc/haproxy/pem/polysets.pem
 
   registry-ui:
     ports:
@@ -16,41 +16,41 @@ services:
     environment:
       - REGISTRY_URL=http://localhost:5000
       - DELETE_IMAGES=true
-  
+
   verdaccio:
     environment:
       - VERDACCIO_PORT=4873
     ports:
-      - "9006:4873"
+      - '9006:4873'
     volumes:
-      - "/mnt/data/verdaccio:/verdaccio/storage"
-      - "./scripts/docker/verdaccio/config:/verdaccio/conf"
-      - "./scripts/docker/verdaccio/plugins:/verdaccio/plugins"  
-      
+      - '/mnt/data/verdaccio:/verdaccio/storage'
+      - './scripts/docker/verdaccio/config:/verdaccio/conf'
+      - './scripts/docker/verdaccio/plugins:/verdaccio/plugins'
+
   mongodb:
     ports:
       - 9004:27017
     volumes:
       - /mnt/data/mongodb:/data/db
-  
+
   geth:
-    ports:    
-      - "9008:8544"
-      - "9009:30303"
-      - "9009:30303/udp"
+    ports:
+      - '9008:8544'
+      - '9009:30303'
+      - '9009:30303/udp'
     command: '--identity geth --networkid 2017042099 --datadir "/root/.ethereum/devchain" --unlock 0,1 --password /root/.ethereum/devchain/pw --port "30303" --rpc --rpcport "8544" --rpccorsdomain "*" --rpcaddr="0.0.0.0" --rpcapi "admin,db,eth,miner,net,web3,personal,txpool" --nodiscover --minerthreads=2  --etherbase 0'
-    volumes: 
+    volumes:
       - /mnt/data/geth:/root/.ethereum
-    
+
   p1solc:
     ports:
-      - "9010:8080"
-      - "9011:8545"
-  
+      - '9010:8080'
+      - '9011:8545'
+
   netstatsapi:
     environment:
       - WS_SERVER=ws://factory.shinit.net:15000
-      #- WS_SERVER=netstatsfront:3000 
+      #- WS_SERVER=netstatsfront:3000
       - WS_SECRET=20170420devchain
       - RPC_HOST=geth
       - RPC_PORT=8544
@@ -59,36 +59,33 @@ services:
       - NODE_ENV=private
       - LISTENING_PORT=30303
       - VERBOSITY=3
-  
+
   ganache:
     ports:
-      - "9012:8545"
-      
-  p1webapp:
+      - '9012:8545'
+
+  webapp:
     environment:
       NODE_ENV: development
     ports:
       - 9200:3000
       - 9201:9229
+
   p1dapp:
     ports:
-      - "9202:3000"
-  
+      - '9202:3000'
+
   authapi:
     environment:
       NODE_ENV: development
     ports:
       - 9100:3000
       - 9101:9229
-      
+
   securityapi:
     environment:
       NODE_ENV: development
     ports:
       - 9102:3000
       - 9103:9229
-    command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]
-
-  
-  
-  
+    command: ['node', '--inspect=0.0.0.0:9229', './bin/www']

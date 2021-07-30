@@ -15,11 +15,14 @@ auth:
     # Maximum amount of users allowed to register, defaults to "+inf".
     # You can set this to -1 to disable registration.
     #max_users: 1000
+    
+publish:
+  allow_offline: true
 
 # a list of other known repositories we can talk to
 uplinks:
   npmjs:
-    url: https://registry.npmjs.org/
+    url: http://registry.npmjs.org/
 
 packages:
   '@*/*':

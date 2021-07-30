@@ -2,23 +2,33 @@
   "name": "@pridevel/authnform",
   "version": "1.0.0",
   "description": "authentication components",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build-lib": "rollup -c",
+    "unpub": "npm unpublish @pridevel/authnform --registry http://localhost:9006/ --force",
+    "pub":"rollup -c && npm publish --registry http://localhost:9006/"
   },
   "author": "Pridevel",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.8",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
     "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.6",
     "@storybook/addon-links": "^6.3.6",
     "@storybook/react": "^6.3.6",
     "babel-loader": "^8.2.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "rollup": "^2.54.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "peerDependencies": {
     "react": "^17.0.2",

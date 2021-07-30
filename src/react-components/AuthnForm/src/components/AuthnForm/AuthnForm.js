@@ -11,11 +11,12 @@ class AuthnForm extends Component{
       username:'',
       password:'',
       repassword:'',
-      chkreme:false
+      chkreme:false,
+      loading:false,
+
     }
     this.Constants = this.props?.constants;
     this.nextPage = this.props?.nextpage;
-    this.token = this.props?.token;
   }
 
   authorize() {
@@ -30,11 +31,16 @@ class AuthnForm extends Component{
         .post(url, { username:username, password:password })
         .then((res) => {
           console.log(res.data);
-          this.setState({ success: res.data.success });
+          if(!res.data.success){
+            this.props.showError({error:true, errorMessage:res.data.msg? res.data.msg : 'Signup failed'})
+          }
+          this.setState({ success: res.data.success, loading:false });
           window.location=this.nextPage||'/';
         })
         .catch((err) => {
+          this.props.showError({error:true, errorMessage:'Signup failed'})
           console.log(err);
+          this.setState({loading:false})
         });
 
     } else if (this.props.mode === 'login') {
@@ -46,43 +52,91 @@ class AuthnForm extends Component{
         .post(url, { username:username, password:password })
         .then((res) => {
           console.log(res.data);
-          this.setState({ success: res.data.success });
+          if(!res.data.success){
+            this.props.showError({error:true, errorMessage:res.data.msg ? res.data.msg : 'Login failed'})
+          }
+          this.setState({ success: res.data.success, loading:false });
           window.location=this.nextPage||'/';
         })
         .catch((err) => {
           console.log(err);
+          this.props.showError({error:true, errorMessage:'Login failed'})
+          this.setState({loading:false})
         });
 
     } else if (this.props.mode === 'resetpwd') {
-      
       url = this.Constants.BASE_URL + this.Constants.RESET;
       console.log({ username: username });
       axios
         .post(url, { username: username })
         .then((res) => {
           console.log(res.data);
-          this.setState({ success: res.data.success });
+          if(!res.data.success){
+            this.props.showError({error:true, errorMessage:res.data.msg? res.data.msg : 'Request failed'})
+          }
+          this.setState({ success: res.data.success, loading:false });
           window.location=this.nextPage||'/';
         })
         .catch((err) => {
           console.log(err);
-        });
-    } else if (this.props.mode === 'token') {
-      url = this.Constants.BASE_URL + this.Constants.TOKEN + this.token;
-      console.log({ password: password });
-      axios
-        .post(url, { password: password })
-        .then((res) => {
-          console.log(res.data);
-          this.setState({ success: res.data.success });
-          window.location=this.nextPage||'/';
-        })
-        .catch((err) => {
-          console.log(err);
+          this.props.showError({error:true, errorMessage:res.data.msg? res.data.msg : 'Request failed'})
+          this.setState({loading:false})
+
         });
     }
   }
+  
+  validation(){
+    this.setState({loading:true});
+    let lowerCase = /[a-z]/g;
+    let upperCase = /[A-Z]/g;
+    let number = /[0-9]/g;
+    let specialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/g;
+    let pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+    validPassword = false;
+    validUsername = false;
+    let username = this.state.username;
+    let password = this.state.password;
+    if(this.props.mode ==='resetpwd'){
+      validPassword=true;
+    } else if (
+      password.match(lowerCase) &&
+      password.match(upperCase) &&
+      password.match(number) &&
+      password.match(specialChar) &&
+      password.length >= 8
+    ) {
+      if (this.props.mode === 'signup') {
+        if (password === this.state.repassword) {
+          validPassword = true;
+        } else {
+          this.props.showError({error:true, errorMessage:'Passwords do not match'});
+          this.setState({loading:false})
+        }
+      } else {
+        validPassword = true;
+      }
+    }
+    if (!username.trim().includes(' ') && username.match(pattern)){
+      validUsername = true;
+    }
 
+    if(validUsername && validPassword){
+      this.props.showError({error:false, errorMessage:''});
+      this.authorize();
+    }else {
+      if(!validUsername && !validPassword){
+        this.props.showError({error:true, errorMessage:'Invalid Username and password'});
+        this.setState({loading:false})
+      }else if(!validUsername){
+        this.props.showError({error:true, errorMessage:'Invalid Username'});
+        this.setState({loading:false})
+      }else if(!validPassword){
+        this.props.showError({error:true, errorMessage:'Invalid Password.'});
+        this.setState({loading:false})
+      }
+    }
+  }
 
   render (){
     const mode = this.props.mode;
@@ -92,7 +146,6 @@ class AuthnForm extends Component{
           <div className='p-grid p-mt-2 p-m-0'>
             <div className='p-col'>
               <div className='box'>
-                {mode !== 'token' &&
                 <InputText
                   id='emailaddress'
                   value={this.state.username}
@@ -100,7 +153,6 @@ class AuthnForm extends Component{
                   placeholder='Email address'
                   type='text'
                 />
-                }
               </div>
             </div>
           </div>
@@ -123,7 +175,7 @@ class AuthnForm extends Component{
             </div>
           )}
 
-          {(mode === 'signup'|| mode === 'token') && (
+          {(mode === 'signup') && (
             <div className='p-grid p-mt-2 p-m-0'>
               <div className='p-col'>
                 <div className='box'>
@@ -155,14 +207,18 @@ class AuthnForm extends Component{
           )}
 
           <Button
+            loading={this.state.loading} 
+            loadingOptions={{ position: 'right' }}
             label={
               mode === 'login'
                 ? 'Login'
                 : mode === 'signup'
                 ? 'Sign Up'
-                : 'Reset Password'
+                : mode === 'resetpwd'
+                ? 'Reset Password'
+                : 'Assign mode as "login", "signup" or "resetpwd"'
             }
-            onClick={() => this.authorize()}
+            onClick={() => this.validation()}
             className='p-button-info p-mt-2'
           />
 

@@ -83,6 +83,7 @@ class Auth {
             error: err
           });
         }
+        
         res.json({ success: true, msg: 'user is created' });
       });
     }

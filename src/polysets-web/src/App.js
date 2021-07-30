@@ -4,7 +4,6 @@ import 'primereact/resources/themes/saga-green/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Menubar } from 'primereact/menubar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -15,17 +14,36 @@ import About from './pages/About';
 import Faqs from './pages/Faqs';
 import AuthnPage from './pages/AuthnPage';
 import CreateFunds from './pages/CreateFunds';
-import CreateFPFees from './pages/CreateFPFees';
-import AddTokens from './pages/AddTokens';
-import Customize from './pages/Customize';
 import CreateSetPages from './pages/CreateSetPage';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.logOut = this.logOut.bind(this);
+    
+    this.state = {
+      showModeratorBoard: false,
+      showAdminBoard: false,
+      currentUser: undefined,
+    };
   }
+
+  componentDidMount(){
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
+  }
+
+  logOut = () => localStorage.removeItem('user')
+
   render() {
     const items = [
       {
@@ -62,7 +80,6 @@ class App extends React.Component {
       
     ];
     return (
-      <Router>
         <div className='App'>
           <header className='p-grid p-m-0'>
             <div className='p-field p-col-12 p-md-12'>
@@ -94,20 +111,13 @@ class App extends React.Component {
           <section className='p-grid p-m-0'>
             <Switch>
               <Route exact path='/login'>
-                {' '}
-                <AuthnPage mode='login' />{' '}
+                <AuthnPage mode='login' />
               </Route>
               <Route exact path='/signup'>
-                {' '}
-                <AuthnPage mode='signup' />{' '}
+                <AuthnPage mode='signup' />
               </Route>
               <Route exact path='/resetpwd'>
-                {' '}
-                <AuthnPage mode='resetpwd' />{' '}
-              </Route>
-              <Route exact path='/reset:token?'>
-                {' '}
-                <AuthnPage mode='token' />{' '}
+                <AuthnPage mode='resetpwd' />
               </Route>
               <Route exact path='/' component={CreateFunds} />
               <Route exact path='/feature' component={Feature} />
@@ -118,12 +128,8 @@ class App extends React.Component {
               <Route exact path='/createset' component={CreateSetPages} />
             </Switch>
           </section>
-          <footer className='textcenter'>
-            {' '}
-            PrideVel Business Solutions LCC{' '}
-          </footer>
+          <footer className='textcenter'> PrideVel Business Solutions LCC </footer>
         </div>
-      </Router>
     );
   }
 }
