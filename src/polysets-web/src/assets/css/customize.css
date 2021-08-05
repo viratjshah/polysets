@@ -1,0 +1,21 @@
+.fund-image-section
+{
+    width: 7%;
+}
+.fund-image-section img{
+    width: 100%;
+}
+.fund-input
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.p-field-input
+{
+    width: 100%;
+}
+.fund-input-in
+{
+    width: 100%;
+}

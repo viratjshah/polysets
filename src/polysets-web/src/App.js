@@ -119,7 +119,7 @@ class App extends React.Component {
                       />
                     </div>
                     }
-                    {this.state.userlogin && 
+                 
                     {!this.state.currentUser && 
                     <div>
                     <Button

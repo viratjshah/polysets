@@ -10,7 +10,7 @@
     "build-storybook": "build-storybook",
     "build-lib": "rollup -c",
     "unpub": "npm unpublish @pridevel/authnform --registry http://localhost:9006/ --force",
-    "pub":"rollup -c && npm publish --registry http://localhost:9006/"
+    "pub": "rollup -c && npm publish --registry http://localhost:9006/"
   },
   "author": "Pridevel",
   "license": "MIT",

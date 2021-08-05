@@ -51,14 +51,7 @@ const Token = (props) => {
           <div class="alert alert-danger">
             Before proceeding, please review our Set Creation Guide as on all ERC20 token are compatible with the Set Protocol. Incorrectly configuring Set with illiquid or obscure tokens can result in locked funds and lost of network fees.
           </div>
-          <div>
-<<<<<<< Updated upstream
-             {/* <ListBox value={props.state.selectedCountries} options={tokens} onChange={(e) => props.onChange({ selectedCountries: e.value })} multiple filter optionLabel="name"
-                  itemTemplate={countryTemplate} style={{  }} listStyle={{ maxHeight: '250px' }} /> */}
-                  <AutoComplete className="p-col-12" />
-=======
           <AutoComplete className="p-col-12" />
->>>>>>> Stashed changes
           </div>
           <section className="p-mt-4">
             <div className="p-grid gridheader">
@@ -87,7 +80,7 @@ const Token = (props) => {
             </div>            
           </section>
         </div>
-     </div>
+  
     )
 }
 export default Token;
