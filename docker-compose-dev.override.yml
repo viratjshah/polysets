@@ -70,7 +70,7 @@ services:
     ports:
       - 9200:80
       - 9201:9229
-    volumes: 
+    volumes:
         - './scripts/docker/polysets-web/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf'
 
   p1dapp:

@@ -1,8 +1,5 @@
 import React from 'react';
 import 'primeflex/primeflex.css';
-import { Slider } from 'primereact/slider';
-import { InputNumber } from 'primereact/inputnumber';
-import { ToggleButton } from 'primereact/togglebutton';
 import { Button } from 'primereact/button';
 
 const Publish = (props) => {
@@ -28,7 +25,7 @@ const Publish = (props) => {
             </div>
           </section>
           <Button
-          label='Create Set'
+          label='Edit Set'
           className='p-button p-component p-button-outlined p-button-secondary p-col-12 p-mt-2 p-ml-1'
           onClick={()=> props.onChange({activeIndex:0})}
         />
@@ -36,6 +33,7 @@ const Publish = (props) => {
         <article className="p-mt-3">
             To publish your Set, you'll need to pay ETH to cover the Smart contract creation costs.
             We do not charge fees to create Sets, these costs are Etherem Network Fees. 
+
         </article>
         <div class="alert alert-danger p-mt-3">
           Before proceeding, please review our Set Creation Guide as on all ERC20 token are compatible with the Set Protocol. Incorrectly configuring Set with illiquid or obscure tokens can result in locked funds and lost of network fees.

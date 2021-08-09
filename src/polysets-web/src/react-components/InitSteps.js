@@ -97,7 +97,7 @@ class InitSteps extends React.Component {
         {this.componentPages[this.state.activeIndex]}
         
         { 
-          this.state.activeIndex!==3 &&  
+          this.state.activeIndex!==4 &&  
         <div className='p-field p-col-12 p-md-12 p0 m0'>
           <Button
             label='Back'
@@ -115,7 +115,7 @@ class InitSteps extends React.Component {
           <Button
             label='Continue'
             onClick={() => {
-              if(this.state.activeIndex>=3){
+              if(this.state.activeIndex>=4){
                 this.setState({activeIndex:4})
                 window.location='/home'
               } else {
@@ -128,38 +128,7 @@ class InitSteps extends React.Component {
         </div>
         }
 
-        {/* customize vutton section */}
-        { 
-                this.state.activeIndex>=3 &&  
-                <div className='p-d-flex p-jc-center p-field p-col-12 customize-btn-section'>
-                  <Button
-                    label='Previos'
-                    id='btnback-cust'
-                    onClick={() => {
-                      if(this.state.activeIndex<=0){
-                        this.setState({activeIndex:0})
-                        window.location = '/createfunds';
-                      } else {
-                        this.setState({activeIndex:this.state.activeIndex-1})
-                      }
-                    }}
-                    className='p-button p-component p-button-outlined p-button-secondary p-col-5 p-mt-21'
-                  />
-                  <Button
-                    label='Next'
-                    onClick={() => {
-                      if(this.state.activeIndex>=4){
-                        this.setState({activeIndex:4})
-                        window.location='/home'
-                      } else {
-                        this.setState({activeIndex:this.state.activeIndex+1})
-                      }
-                    }}
-                    className='p-button-primary p-component p-button-info p-col-5 p-mt-21 p-ml-5'
-                    id='btncont-cust'
-                  />
-                </div>
-                }
+
       </div>
     );
   }

@@ -165,11 +165,11 @@ label.p-button {
   top: -26px;
 }
 
-#pwdreset{
+#pwdreset {
   width: 30%;
   margin: 100px auto 130px auto;
 }
-#pwdreset h4{
+#pwdreset h4 {
   width: 30%;
   margin: 100px auto 130px auto;
 }
@@ -199,34 +199,6 @@ label.p-button {
   border: 1px solid #9b7fbc !important;
   width: 48%;
   margin: 5px 0px !important;
-}
-
-
-.customize-btn-section
-{
-  padding-top: 5%;
-  padding-bottom: 5%;
-}
-
-
-
-#btncont-cust {
-  color: #ffffff;
-  background: #0d89ec !important;
-  border: 1px solid #0d89ec !important;
-  width: 30%;
-  margin: 5px 0px !important;
-}
-
-
-.btncont-cust:hover {
-  color: #000000;
-  background: #0d89ec;
-  border: 1px solid #0d89ec;
-}
-
-#btnback-cust {
-  width: 30%;
 }
 
 #btnback {
@@ -324,7 +296,6 @@ footer {
   right: 11px !important;
   float: right !important;
 }
-
 
 #btnlogout {
   width: 35%;

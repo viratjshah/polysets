@@ -23,6 +23,9 @@ publish:
 uplinks:
   npmjs:
     url: http://registry.npmjs.org/
+    max_fails: 20
+    fail_timeout: 10m
+
 
 packages:
   '@*/*':

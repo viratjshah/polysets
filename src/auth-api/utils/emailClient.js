@@ -4,63 +4,68 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 class Email {
   constructor(){
     dotenv.config()
-    let defaultClient = SibApiV3Sdk.ApiClient.instance;
-    let apiKey = defaultClient.authentications['api-key'];
-    apiKey.apiKey = process.env.EMAIL_API_KEY;
-    let apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-    let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
-    sendSmtpEmail.sender = {"name":"Dipen Vadodaria","email":"dipen.vadodaria@pridevel.com"};
-    sendSmtpEmail.headers = {"Some-Custom-Name":"unique-id-1234"};
-    sendSmtpEmail.replyTo = {"email":"virat.shah@pridevel.com","name":"Virat Shah"};
-    sendSmtpEmail.subject = "{{params.Subject}}";
-    sendSmtpEmail.htmlContent = `<html> <body> <h1> {{params.Header}} </h1> <a href={{params.Link}}> {{params.LinkText}} </a> <small> This link is only valid for the next 24 hours. </small> </body> </html>`;
+    this.defaultClient = SibApiV3Sdk.ApiClient.instance;
+    this.apiKey = this.defaultClient.authentications['api-key'];
+    this.apiKey.apiKey = process.env.EMAIL_API_KEY;
+    this.apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    this.sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+    this.sendSmtpEmail.sender = {"name":"Dipen Vadodaria","email":"dipen.vadodaria@pridevel.com"};
+    this.sendSmtpEmail.headers = {"Some-Custom-Name":"unique-id-1234"};
+    this.sendSmtpEmail.replyTo = {"email":"virat.shah@pridevel.com","name":"Virat Shah"};
+    this.sendSmtpEmail.subject = "{{params.Subject}}";
+    this.sendSmtpEmail.htmlContent = `<html> <body> <h1> {{params.Header}} </h1> <a href={{params.Link}}> {{params.LinkText}} </a> <small> This link is only valid for the next 24 hours. </small> </body> </html>`;
   }
 
-  resetPassword(userEmail, username, resetLink){
-    sendSmtpEmail.to = [{"email":userEmail,"name":username}];
-    sendSmtpEmail.params = {
-      "Header":"Reset your PolySets password",
-      "Subject":"[Polyset] Please reset your password",
-      "Link":resetLink,
-      "LinkText":"Click here to reset your password."
+  resetPassword = async function (userEmail, username, resetLink){
+    this.sendSmtpEmail.to = [{"email": userEmail,"name": username}];
+    this.sendSmtpEmail.params = {
+      "Header": "Reset your PolySets password",
+      "Subject": "[Polyset] Please reset your password",
+      "Link": resetLink,
+      "LinkText": "Click here to reset your password."
     };
-    apiInstance.sendTransacEmail(sendSmtpEmail).then((data)=>{
+    await this.apiInstance.sendTransacEmail(this.sendSmtpEmail).then((data)=>{
       console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+      return {success:true, data};
     }, (error)=>{
       console.error(error);
+      return {success:true, error};
     });
   }
-
-  verifyEmail(userEmail, username, verifyLink){
-    sendSmtpEmail.to = [{"email":userEmail,"name":username}];
-    sendSmtpEmail.params = {
-      "Header":"Reset your PolySets password",
-      "Subject":"[Polyset] Please reset your password",
-      "Link":verifyLink,
-      "LinkText":"Click here to reset your password."
+  
+  verifyEmail = async function(userEmail, username, verifyLink){
+    this.sendSmtpEmail.to = [{"email": userEmail,"name": username}];
+    this.sendSmtpEmail.params = {
+      "Header": "Reset your PolySets password",
+      "Subject": "[Polyset] Please reset your password",
+      "Link": verifyLink,
+      "LinkText": "Click here to reset your password."
     };
-    apiInstance.sendTransacEmail(sendSmtpEmail).then((data)=>{
+    this.apiInstance.sendTransacEmail(this.sendSmtpEmail).then((data)=>{
       console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-      return JSON.stringify(data);
+      return {success: true, data};
     }, (error)=>{
       console.error(error);
+      return {success: false, error};
     });
 
-    
+    testEmail = function(res,req) {
+      this.sendSmtpEmail.to = [{"email":"viratwip@yahoo.com","name":"Virat Shah"}];
+      this.sendSmtpEmail.subject = "My Test";
+      this.sendSmtpEmail.htmlContent = "<html><body><h1>This is my first transactional email {{params.parameter}}</h1></body></html>";
+      this.sendSmtpEmail.params = {"parameter":"My param value","subject":"New Subject"};
+      this.sendSmtpEmail.cc = [{"email":"virat.shah@pridevel.com","name":"Virat SHah"}];
+      this.sendSmtpEmail.bcc = [{"email":"viratwfh@gmail.com","name":"Virat Shah"}];
+      this.apiInstance.sendTransacEmail(this.sendSmtpEmail).then(function(data) {
+        console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+        return res.json({success:true, json:JSON.stringify(data)})
+      }, function(error) {
+        console.error(error);
+        return res.json({success:false, json:JSON.stringify(error)})
+      });
+    }
   }
 }
+Email = new Email();
+module.exports = Email;
 
-export default Email;
-sendSmtpEmail.subject = "My Test";
-sendSmtpEmail.htmlContent = "<html><body><h1>This is my first transactional email {{params.parameter}}</h1></body></html>";
-sendSmtpEmail.to = [{"email":"viratwip@yahoo.com","name":"Virat Shah"}];
-sendSmtpEmail.params = {"parameter":"My param value","subject":"New Subject"};
-sendSmtpEmail.cc = [{"email":"virat.shah@pridevel.com","name":"Virat SHah"}];
-sendSmtpEmail.bcc = [{"email":"viratwfh@gmail.com","name":"Virat Shah"}];
-
-
-apiInstance.sendTransacEmail(sendSmtpEmail).then(function(data) {
-  console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-}, function(error) {
-  console.error(error);
-});

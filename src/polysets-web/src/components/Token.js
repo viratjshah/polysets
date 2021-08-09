@@ -1,13 +1,8 @@
 import React from 'react';
 import 'primeflex/primeflex.css';
 import { Slider } from 'primereact/slider';
-import { InputNumber } from 'primereact/inputnumber';
-import { ToggleButton } from 'primereact/togglebutton';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import {Steps} from 'primereact/steps';
-import { Toast } from 'primereact/toast';
-import { ListBox } from 'primereact/listbox';
 import { AutoComplete } from 'primereact/autocomplete';
 
 const Token = (props) => {
@@ -51,6 +46,7 @@ const Token = (props) => {
           <div class="alert alert-danger">
             Before proceeding, please review our Set Creation Guide as on all ERC20 token are compatible with the Set Protocol. Incorrectly configuring Set with illiquid or obscure tokens can result in locked funds and lost of network fees.
           </div>
+          <div>
           <AutoComplete className="p-col-12" />
           </div>
           <section className="p-mt-4">
@@ -80,7 +76,7 @@ const Token = (props) => {
             </div>            
           </section>
         </div>
-  
+     </div>
     )
 }
 export default Token;

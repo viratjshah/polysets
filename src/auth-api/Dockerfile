@@ -4,6 +4,7 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/app
 COPY ["src/auth-api/package.json", "src/auth-api/package-lock.json*", "src/auth-api/npm-shrinkwrap.json*", "./"]
 COPY ./src/auth-api/ .
-RUN npm set //verdaccio:4873/:_authToken "g7JwbbhC0dnE3vkbzZnGwIJcoTHmHA1x5UNdAC8y7hk="
+COPY ./scripts/docker/auth-api/entrypoint.sh .
+RUN chmod +x entrypoint.sh
 EXPOSE 3000
-ENTRYPOINT ["/bin/bash", "-c", "npm install --registry http://verdaccio:4873 && cp -rf node_modules ../ && rm -rf node_modules && npm start"]
+CMD [ "/bin/bash", "-c", "./entrypoint.sh" ]

@@ -6,7 +6,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import { Button } from 'primereact/button';
 import { Menubar } from 'primereact/menubar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Feature from './pages/Feature';
 import Pricing from './pages/Pricing';
@@ -16,33 +16,39 @@ import AuthnPage from './pages/AuthnPage';
 import CreateFunds from './pages/CreateFunds';
 import CreateSetPages from './pages/CreateSetPage';
 import PasswordReset from './pages/PasswordReset';
+import PrivateRoute from './react-components/PrivateRoute';
+import AuthRoute from './react-components/AuthRoute';
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
-
-    this.logOut = this.logOut.bind(this);
-    
+    super(props);    
     this.state = {
-      showModeratorBoard: false,
-      showAdminBoard: false,
-      currentUser: undefined,
+      userlogin:false
     };
   }
 
   componentDidMount(){
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    if (user) {
-      this.setState({
-        currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-      });
+    if(!this.state.userlogin){
+      const user = window.sessionStorage.getItem('access-token');
+      if(user){
+        this.setState({userlogin:true});
+        console.log(`here's the token`);
+      }
+      console.log(`token: ${user}`);
+    }
+  }
+  
+  componentDidUpdate(){
+    if(!this.state.userlogin){
+      const user = window.sessionStorage.getItem('access-token');
+      if(user){
+        this.setState({userlogin:true});
+        console.log(`here's the token`);
+      }
+      console.log(`token: ${user}`);
     }
   }
 
-  logOut = () => localStorage.removeItem('user')
 
   render() {
     const logoutItems = [
@@ -119,31 +125,11 @@ class App extends React.Component {
                       />
                     </div>
                     }
-                 
-                    {!this.state.currentUser && 
-                    <div>
-                    <Button
-                      label='Login'
-                      onClick={() => {
-                        window.location = '/login';
-                      }}
-                      className='p-button-info p-col-3 '
-                      id='btnlogin'
-                    />
-                    <Button
-                      label='Sign-up'
-                      onClick={() => {
-                        window.location = '/signup';
-                      }}
-                      className='p-button-info p-ml-2 p-col-3'
-                      id='btnsignup'
-                    />
-                    </div>
-                  }
-                    {this.state.currentUser && 
+                    {this.state.userlogin && 
                       <Button
                         label='Logout'
-                        onClick={() => {
+                        onClick={() => { 
+                          window.sessionStorage.removeItem('access-token');
                           window.location = '/login';
                         }}
                         className='p-button-info p-ml-2 p-col-11'
@@ -157,24 +143,17 @@ class App extends React.Component {
           </header>
           <section className='p-grid p-m-0'>
             <Switch>
-              <Route exact path='/login'>
-                <AuthnPage mode='login' />
-              </Route>
-              <Route exact path='/signup'>
-                <AuthnPage mode='signup' />
-              </Route>
-              <Route exact path='/resetpwd'>
-                {' '}
-                <AuthnPage mode='resetpwd' />{' '}
-              </Route>
-              <Route exact path='/reset' component={PasswordReset} />              
-              <Route exact path='/' component={CreateFunds} />
-              <Route exact path='/feature' component={Feature} />
-              <Route exact path='/pricing' component={Pricing} />
-              <Route exact path='/faqs' component={Faqs} />
-              <Route exact path='/about' component={About} />
-              <Route exact path='/home' component={Home} />
-              <Route exact path='/createset' component={CreateSetPages} />
+              <Route exact path='/feature' isAuth={this.state.userlogin} component={Feature} />
+              <Route exact path='/pricing' isAuth={this.state.userlogin} component={Pricing} />
+              <Route exact path='/faqs' isAuth={this.state.userlogin} component={Faqs} />
+              <Route exact path='/about' isAuth={this.state.userlogin} component={About} />
+              <AuthRoute exact path='/login' isAuth={this.state.userlogin} Component = {AuthnPage} childProps={{mode:'login'}}/>
+              <AuthRoute exact path='/signup' isAuth={this.state.userlogin} Component = {AuthnPage} childProps={{mode:'signup'}}/>
+              <AuthRoute exact path='/resetpwd' isAuth={this.state.userlogin} Component = {AuthnPage} childProps={{mode:'resetpwd'}}/>
+              <PrivateRoute exact path='/reset' isAuth={this.state.userlogin} Component={PasswordReset} />
+              <PrivateRoute exact path='/' isAuth={this.state.userlogin} Component={CreateFunds}/>
+              <PrivateRoute exact path='/home' isAuth={this.state.userlogin} Component={Home} />
+              <PrivateRoute exact path='/createset' isAuth={this.state.userlogin} Component={CreateSetPages} />
             </Switch>
           </section>
           <footer className='textcenter'> PrideVel Business Solutions LCC </footer>

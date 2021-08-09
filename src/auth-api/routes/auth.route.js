@@ -1,4 +1,5 @@
 var auth = require("../controllers/auth.controller");
+var email = require('../utils/emailClient');
 var express = require('express');
 const router = express.Router();
  
@@ -11,6 +12,10 @@ router.post('/reset/:token', auth.verifyToken);
 router.post('/token', auth.token);
 router.post('/testrequest', auth.testRequest);
 router.post('/testreset/:token', auth.testReset);
+router.post('/testemail', );
+router.post('/user/all', async function(req, res){
+  email.testEmail
+});
 
 
 
