@@ -24,11 +24,13 @@ var PassportManager = require('./config/passport');
 var user = require("./models/user.model");
 var profile = require("./models/profile.model");
 var token = require("./models/token.model")
+var customize = require("./models/customize.model");
 
 module.exports = {
   Mongoose: mongoose,
   PassportManager: PassportManager,
   User: user,
   Profile: profile,
-  Token: token
+  Token: token,
+  Customize:customize
 }

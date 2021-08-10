@@ -19,3 +19,16 @@
 {
     width: 100%;
 }
+.fund-logo-text-parent
+{
+    width: 100%;
+    padding-left: 2%;
+}
+.fund-logo-text
+{
+    line-height:2.5;
+}
+
+.fund-input-in{
+    padding-left: 2%;
+}
