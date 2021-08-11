@@ -4,6 +4,7 @@ var Token = dataAccess.Token;
 const jwt = require('jsonwebtoken');
 const { json } = require('express');
 var crypto = require('crypto');
+var email = require('../utils/emailClient')
 
 class Auth {
   test = async function (req, res) {
@@ -26,11 +27,28 @@ class Auth {
         }
         var resetEmailToken = crypto.randomBytes(16).toString('hex',15);
         var token = new Token({username:req.body.username, token:resetEmailToken})
-        token.save((err)=>{
+        token.save(async (err)=>{
           if(err){
             return res.json({success:false, msg:'Error generating token, please try again'})
           }
-          return res.json({success:true, msg:`http://p1app.local/auth/reset/${resetEmailToken}`})
+          let result = await email.resetPassword(req.body.username,'Aniket Bhat', `http://polysets.local/auth/reset/${resetEmailToken}`)
+          //   .then(r=>{
+          //     console.log('res',r.json())
+          //     return res.json({msg:'bhsfjg'})
+          // }).catch(err=>{
+          //   console.log(err)
+          //   return res.json({msg:'suufhng'})
+          // })
+          if(result && result.success){
+            console.log('succes res',result)
+            return res.json({...result, msg:'Mail sent successfully'})
+          }else if (result && !result.success){
+            console.log('Fail res',result)
+            return res.json({...result, msg:'Error sending email'})
+          } else {
+            console.log('idfk',result)
+            return res.json({success:false, msg:'Internal server error email'})
+          }
         })
       } catch(err) {
         console.log('testReqest error',err);
@@ -101,29 +119,27 @@ class Auth {
             var token = jwt.sign(user.toJSON(), process.env.TOKEN_SECRET, {
               expiresIn: '30d',
             });
-            res.cookie('access-token', token, {
-              maxAge: 60 * 60 * 24 * 30 * 1000,
-              httpOnly: true,
-            });
+            // res.cookie('access-token', token, {
+            //   maxAge: 60 * 60 * 24 * 30 * 1000,
+            //   httpOnly: true,
+            // });
             return res
               .status(200)
-              .json({ success: true, msg: 'login successful' });
+              .json({ success: true, msg: 'login successful', token:JSON.stringify(token) });
           } else {
             var token = jwt.sign(user.toJSON(), process.env.TOKEN_SECRET, {
               expiresIn: '1d',
             });
-            res.cookie('access-token', token, {
-              maxAge: 60 * 60 * 24 * 1000,
-              httpOnly: true,
-            });
+            // res.cookie('access-token', token, {
+            //   maxAge: 60 * 60 * 24 * 1000,
+            //   httpOnly: true,
+            // });
             return res
               .status(200)
-              .json({ success: true, msg: 'email verification pending' });
+              .json({ success: true, msg: 'email verification pending', token:JSON.stringify(token) });
           }
         } else {
-          return res
-            .status(401)
-            .send({ success: false, msg: 'incorrect password' });
+          return res.send({ success: false, msg: 'incorrect password' });
         }
       });
     });
@@ -309,7 +325,17 @@ class Auth {
       });
   };
 
-  sendResetEmail = function (username) {
+  resendVerifyEmail = function (req, res) {
+    User.findOne({username:req.body.username}, (err, user)=>{
+      if (err) throw err;
+      if(!user){
+        return res.json({success:false, msg:'User not found'})
+      }else {
+        
+
+      }
+    })
+
     var token = crypto.randomBytes(8).toString('hex');
     var time = Math.floor(Date.now() / 1000 + 86400);
     return [null, token, time];

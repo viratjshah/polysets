@@ -8,14 +8,15 @@ https://docs.microsoft.com/en-us/windows/wsl/install-win10
 
 
 
-#### Clone p1app Repository
+#### Clone PolySets Repository
 
 ```bash
+#In case you cannot use D:/git/ as your root directory, make sure to change it to whatever your root directory is anywhere you see a **. 
 cd /mnt/d/git
 
-git clone https://github.com/PrideVelConsulting/p1app.git
+git clone https://github.com/PrideVelConsulting/PolySets.git
 
-cd p1app
+cd PolySets
 ```
 
 
@@ -47,6 +48,23 @@ wsl --list --verbose
 wsl --set-version <distribution name> 2
 ```
 
+#### Install node and npm
+
+```bash
+#Check for a newer version on nvm.sh This one is from March 2021. 
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.profile 
+
+nvm ls-remote
+#Replace version with one of the newer LTS versions from the above command. 
+nvm install <version>
+
+$ node -v
+v14.16.0
+$ npm -v
+6.14.11
+```
+
 
 
 #### Install Docker on Window
@@ -59,9 +77,9 @@ wsl --set-version <distribution name> 2
 
 ```bash
 sudo apt update
-sudo apt install \	apt-transport-https \	ca-certificates \	curl \	gnupg \	lsb-release
+sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \ "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt updatesudo apt install docker-ce docker-ce-cli containerd.io
 sudo docker run hello-worldsudo groupadd docker
 
@@ -85,23 +103,34 @@ docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /va
 
 
 
-##### Create htpasswd
+##### Create htpasswd**
 
 ```bash
-cd /mnt/d/git/p1app
+cd /mnt/d/git/PolySets
 mkdir auth
-docker run \ --entrypoint htpasswd \ httpd:2 -Bbn p1app password > auth/htpasswd\
+docker run --entrypoint htpasswd httpd:2 -Bbn polysets password > auth/htpasswd
 ```
 
 
 
-##### Create Private Registry Container
+##### Create Private Registry Container**
 
 ```bash
-docker run -d \ -p 5000:5000 \ --restart=always \ --name registry \ -v /mnt/d/git/p1app/auth:/auth \ -e "REGISTRY_STORAGE_DELETE_ENABLED:true" \ -e "REGISTRY_AUTH=htpasswd" \ -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \ -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \ -v /mnt/data/registry:/var/lib/registry \ -v /mnt/d/git/p1app/scripts/docker/registry/config.yml:/etc/docker/registry/config.yml \ registry:2
+docker run -d \
+-p 5000:5000 \
+--restart=always \
+--name registry \
+-v /mnt/d/git/PolySets/auth:/auth \
+-e "REGISTRY_STORAGE_DELETE_ENABLED:true" \
+-e "REGISTRY_AUTH=htpasswd" \
+-e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+-e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+-v /mnt/data/registry:/var/lib/registry \
+-v /mnt/d/git/PolySets/scripts/docker/registry/config.yml:/etc/docker/registry/config.yml \
+registry:2
 ```
 
-##### 
+
 
 ##### Add host:port to Docker Desktop's insecure-registry
 
@@ -120,18 +149,18 @@ sudo nano /etc/docker/daemon.json
 
 ##### Login Private Registry
 
-```
+```bash
 docker login localhost:5000
 ```
 
 
 
-#### Create Certificate
+#### Create Certificate**
 
 ```bash
-cd /mnt/d/git/p1app/scripts/docker/haproxy/pem
+cd /mnt/d/git/PolySets/scripts/docker/haproxy/pem
 
-PARENT="p1app.local"
+PARENT="polysets.local"
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $PARENT.key -out $PARENT.crt
 
 #example
@@ -140,40 +169,46 @@ State or Province Name (full name) [Some-State]:MH
 Locality Name (eg, city) []:MUMBAI
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:PV
 Organizational Unit Name (eg, section) []:ENG
-Common Name (e.g. server FQDN or YOUR name) []:p1app.local
+Common Name (e.g. server FQDN or YOUR name) []:polysets.local
 Email Address []:
 
-sudo bash -c 'cat p1app.local.key p1app.local.crt >> p1app.pem'
+sudo bash -c 'cat polysets.local.key polysets.local.crt >> polysets.pem'
 ```
 
 
 
-#### Deploy Infra and Project containers
+#### Deploy Infra and Project containers**
 
 ```bash
-cd /mnt/d/git/p1app
+cd /mnt/d/git/PolySets
 
 sudo apt install docker-compose
 ./deploy.sh mongodb
 ./deploy.sh registry-ui
 ./deploy.sh verdaccio
-./deploy.sh geth
-./deploy.sh ganache
-
 ./deploy.sh authapi
-./deploy.sh securityapi
-./deploy.sh p1web
-./deploy.sh p1solc
+./deploy.sh webapp
 ```
 
 
 
-#### Setup Haproxy
+#### Deploy Verdaccio and set it up**
+
+```bash
+cd /mnt/d/git/PolySets
+
+./deploy.sh verdaccio
+sudo chown -R 10001:65533 /mnt/data/verdaccio
+```
+
+
+
+#### Setup Haproxy**
 
 Open portainer and verify that all infra and project containers are running.
 
 ```bash
-cd /mnt/d/git/p1app
+cd /mnt/d/git/PolySets
 ./deploy.sh haproxy
 ```
 
@@ -184,7 +219,7 @@ cd /mnt/d/git/p1app
 Open C:\Windows\System32\drivers\etc\hosts file in notepad++ and append following line
 
 ```bash
-127.0.0.1 p1app.local
+127.0.0.1 polysets.local
 ```
 
 
@@ -194,7 +229,7 @@ Open C:\Windows\System32\drivers\etc\hosts file in notepad++ and append followin
 ##### Register
 
 ```bash
-curl --location --request POST 'https://p1app.local/api/auth/register' \
+curl --location --request POST 'https://polysets.local/api/auth/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{	"username": "p1app", "password": "password"}'
 ```
@@ -202,7 +237,7 @@ curl --location --request POST 'https://p1app.local/api/auth/register' \
 ##### Token
 
 ```bash
-curl --location --request POST 'https://p1app.local/api/auth/token' \
+curl --location --request POST 'https://polysets.local/api/auth/token' \
 --header 'Content-Type: application/json' \
 --data-raw '{	"username": "p1app", "password": "password"}
 ```

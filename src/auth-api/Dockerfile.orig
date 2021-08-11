@@ -1,0 +1,22 @@
+<<<<<<< HEAD
+FROM node:14-alpine
+RUN apk add --no-cache bash
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+COPY ["src/auth-api/package.json", "src/auth-api/package-lock.json*", "src/auth-api/npm-shrinkwrap.json*", "./"]
+COPY ./src/auth-api/ .
+RUN npm set //verdaccio:4873/:_authToken "g7JwbbhC0dnE3vkbzZnGwIJcoTHmHA1x5UNdAC8y7hk="
+EXPOSE 3000
+ENTRYPOINT ["/bin/bash", "-c", "npm install --registry http://verdaccio:4873 && cp -rf node_modules ../ && rm -rf node_modules && npm start"]
+=======
+FROM node:14-alpine
+RUN apk add --no-cache bash
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+COPY ["src/auth-api/package.json", "src/auth-api/package-lock.json*", "src/auth-api/npm-shrinkwrap.json*", "./"]
+COPY ./src/auth-api/ .
+COPY ./scripts/docker/auth-api/entrypoint.sh .
+RUN chmod +x entrypoint.sh
+EXPOSE 3000
+CMD [ "/bin/bash", "-c", "./entrypoint.sh" ]
+>>>>>>> d59c25bd25348353ab08376fde8cebb737af82d8

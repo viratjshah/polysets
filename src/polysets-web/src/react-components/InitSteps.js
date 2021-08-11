@@ -22,13 +22,11 @@ class InitSteps extends React.Component {
       feesRebalancing:0,
       feesManagement:0,
       feesMining:false,
-      tokenSearch:'',
-      tokenSelectedCountries:'',
-      tokenList:{},
+      tokenList:undefined,
       customizeFundCreator:'',
       customizeFundLogo:[],
       customizeFundDesc:'',
-      publishCheckbox:false
+      publishCheckbox:false,
     };
 
     this.setState = this.setState.bind(this);

@@ -64,7 +64,7 @@ const Create = (props) => {
           type='text'
         />
       </p>
-      <h6>Fund Type</h6>
+      {/* <h6>Fund Type</h6>
       <p>This will let your investors know how the fund will be managed.</p>
 
       <div className='p-field p-col-12 p-md-12'>
@@ -82,7 +82,7 @@ const Create = (props) => {
             <label htmlFor="quantfund" className='p-button p-button-warning'>Quant Fund</label>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

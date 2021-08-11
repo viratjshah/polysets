@@ -2,8 +2,6 @@ import React from 'react';
 import Landing from '../components/Landing';
 import {AuthnForm} from '@pridevel/authnform';
 import {Constants} from '../utils/Constants';
-import { render } from 'react-dom';
-
 class AuthnPage extends React.Component {
   constructor(props){
     super(props);

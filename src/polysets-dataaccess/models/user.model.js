@@ -6,17 +6,20 @@ const Schema = mongoose.Schema;
 mongoose.set('useCreateIndex', true);
  
 var UserSchema = new Schema({
+
   username: {
-        type: String,
-        unique: true,
-        required: true
-    },
+    type: String,
+    unique: true,
+    required: true
+  },
   password: {
-        type: String,
-        required: true
-    },
-  reset_email_token: String,
-  reset_email_time: Number,
+    type: String,
+    required: true
+  },
+  is_email_valid:{
+    type:Boolean,
+    default:false
+  }
 },
 {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" } 

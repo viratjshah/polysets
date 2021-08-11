@@ -165,11 +165,7 @@ label.p-button {
   top: -26px;
 }
 
-#pwdreset{
-  width: 30%;
-  margin: 100px auto 130px auto;
-}
-#pwdreset h4{
+#pwdreset {
   width: 30%;
   margin: 100px auto 130px auto;
 }
@@ -201,34 +197,6 @@ label.p-button {
   margin: 5px 0px !important;
 }
 
-
-.customize-btn-section
-{
-  padding-top: 5%;
-  padding-bottom: 5%;
-}
-
-
-
-#btncont-cust {
-  color: #ffffff;
-  background: #0d89ec !important;
-  border: 1px solid #0d89ec !important;
-  width: 30%;
-  margin: 5px 0px !important;
-}
-
-
-.btncont-cust:hover {
-  color: #000000;
-  background: #0d89ec;
-  border: 1px solid #0d89ec;
-}
-
-#btnback-cust {
-  width: 30%;
-}
-
 #btnback {
   width: 48%;
 }
@@ -243,6 +211,10 @@ label.p-button {
   padding: 20px 15px !important;
 }
 
+#tokenAlloc {
+  margin-top: 10px;
+}
+
 .country-item img {
   width: 20px;
 }
@@ -255,7 +227,7 @@ label.p-button {
 .tbtnsm {
   width: 70%;
   max-height: 0px;
-  padding: 10px 5px !important;
+  padding: 21px 5px !important;
 }
 footer {
   width: 100%;
@@ -325,11 +297,35 @@ footer {
   float: right !important;
 }
 
-
 #btnlogout {
   width: 35%;
 }
 
+.p-autocomplete-multiple-container {
+  width: 100%;
+}
+.p-autocomplete-item div {
+  float: left;
+  width: auto;
+  padding: 5px;
+}
+.p-autocomplete-item .token-item img {
+  float: left;
+  padding: 5px;
+  width: 20%;
+}
+.pleft {
+  float: left;
+}
+
+#fundcreat input {
+  min-height: 50px;
+  width: 100%;
+}
+.p-autocomplete-panel {
+  width: 43%;
+  left: 269px;
+}
 /* media query */
 
 /* Smartphones (portrait and landscape) ----------- */
